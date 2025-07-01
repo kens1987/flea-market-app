@@ -15,7 +15,8 @@
 ###  使用技術  
   
 ###  ER図  
-  
+  ![スクリーンショット (570)](https://github.com/user-attachments/assets/0c8e3edb-8de9-432b-9c5e-1172e7e1fa4a)
+
 ##  URL  
   フリマアプリ：  
   php MyAdmin： http://localhost:8080/  
