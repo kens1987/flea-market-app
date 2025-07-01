@@ -12,4 +12,11 @@
     DB_PASSWORD= → laravel_pass  
   php artisan key:generate  
   php artisan migrate  
+###  使用技術  
+  
+###  ER図  
+  
+##  URL  
+  フリマアプリ：  
+  php MyAdmin： http://localhost:8080/  
   
