@@ -16,12 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('product_name');
             $table->string('brand_name');
             $table->integer('price');
             $table->string('condition');
             $table->string('image');
             $table->text('product_description');
+            $table->enum('status',['listed','sold','paused'])->default('listed');
             $table->timestamps();
         });
     }
