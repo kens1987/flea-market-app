@@ -98,7 +98,7 @@ class ProductsTableSeeder extends Seeder
             'price' => 500,
             'brand_name' => '',
             'product_description' => '使いやすいタンブラー',
-            'image' => 'Tumble-souvenir.jpg',
+            'image' => 'Tumbler-souvenir.jpg',
             'condition' => '状態が悪い',
             'status' => 'listed',
         ]);
@@ -109,7 +109,7 @@ class ProductsTableSeeder extends Seeder
             'price' => 4000,
             'brand_name' => 'Starbacks',
             'product_description' => '手動のコーヒーミル',
-            'image' => 'Waitress-with-Coffee+Grinder.jpg',
+            'image' => 'Waitress-with-Coffee-Grinder.jpg',
             'condition' => '良好',
             'status' => 'listed',
         ]);
