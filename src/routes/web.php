@@ -1,18 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.edit');
+    Route::put('/mypage', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/sell', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/', [ItemController::class, 'index'])->name('product.list');
+    // Route::get('/?tab=mylist', [ItemController::class, 'index'])->name('product.list');
 });

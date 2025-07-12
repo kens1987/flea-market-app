@@ -1,0 +1,76 @@
+.mylist-container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.logo {
+    width: 150px;
+}
+
+.search-form {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.header-buttons a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab {
+    margin-right: 20px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.tab.active {
+    color: red;
+    border-bottom: 2px solid red;
+}
+
+.product-list {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product-item {
+    width: 150px;
+    text-align: center;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    background-color: #eee;
+}
+
+.product-name {
+    margin-top: 10px;
+    font-size: 14px;
+}
