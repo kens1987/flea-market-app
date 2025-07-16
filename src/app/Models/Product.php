@@ -20,6 +20,9 @@ class Product extends Model
     public function likes(){
         return $this->hasMany(Like::class);
     }
+    public function isLikedBy($user){
+        return $this->likes->contains('user_id',$user->id);
+    }
     public function category(){
         return $this->belongsTo(Category::class);
     }

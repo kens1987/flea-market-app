@@ -4,12 +4,12 @@
     font-family: 'Arial', sans-serif;
 }
 
-.header {
+/* .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 20px 0;
-}
+    }
 
 .logo {
     width: 150px;
@@ -31,7 +31,7 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
-}
+} */
 
 .tabs {
     display: flex;
@@ -47,10 +47,10 @@
     font-weight: bold;
 }
 
-.tab.active {
+/* .tab.active {
     color: red;
     border-bottom: 2px solid red;
-}
+} */
 
 .product-list {
     display: flex;

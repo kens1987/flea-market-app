@@ -1,0 +1,108 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+.product-detail-container {
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+}
+
+/* .product-image {
+    width: 300px;
+    height: 300px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+} */
+
+img {
+    width: 300px;
+    height: 300px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.brand-name {
+    color: gray;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.actions span {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+h2, h3 {
+    margin-top: 20px;
+}
+
+.comment-box {
+    background: #f0f0f0;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 5px 0 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+.form-container {
+    width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.tags {
+    margin-bottom: 15px;
+}
+
+.tag {
+    background: #f6b1b1;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.error {
+    color: red;
+    text-align: left;
+}
