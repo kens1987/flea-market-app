@@ -26,6 +26,7 @@ class AddressRequest extends FormRequest
         return [
             'postcode' => 'required|string|max:8',
             'address' => 'required|string',
+            'building' => 'nullable|string',
         ];
     }
     public function messages()

@@ -10,10 +10,10 @@ class PurchaseController extends Controller
 {
     public function show($item_id)
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $product = Product::findOrFail($item_id);
         $address = $user->shippingAddress ?? $user->profile;
-        // session(['current_product_id' => $item_id]);
+        $shippingAddress = $user->shippingAddress;
         return view('product.purchase',compact('product','user','address'));
     }
     public function store(Request $request)

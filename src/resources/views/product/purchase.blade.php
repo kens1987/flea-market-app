@@ -21,8 +21,8 @@
         <div class="shipping-address">
             <label>配送先</label>
             @if($address)
-            <p>〒{{ $address->postcode }}</p>
-            <p>{{ $address->address }} {{ $address->building }}</p>
+            <p>〒{{ $user->shippingAddress->postcode ?? '未登録' }}</p>
+            <p>{{ $user->shippingAddress->address ?? '未登録' }} {{ $user->shippingAddress->building ?? '未登録' }}</p>
             @endif
             <a href="{{ route('shipping.address.edit',['item_id' => $product->id]) }}" class="edit-link">変更する</a>
         </div>

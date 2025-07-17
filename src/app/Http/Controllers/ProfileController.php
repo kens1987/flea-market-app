@@ -25,7 +25,6 @@ class ProfileController extends Controller
             'address' => 'nullable|string|max:255',
             'building' => 'nullable|string|max:255',
         ]);
-        
         if($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('image','public');
             $validated['image'] = $imagePath;
@@ -35,7 +34,14 @@ class ProfileController extends Controller
         }else {
             $user->profile()->create($validated);
         }
-
+        $user->shippingAddress()->updateOrCreate(
+            ['user_id'=>$user->id],
+            [
+                'postcode'=>$validated['postcode']??'',
+                'address'=>$validated['address']??'',
+                'building'=>$validated['building']??'',
+            ]
+        );
         return redirect()->route('product.list',['tab' => 'mylist'])->with('success','プロフィールを更新しました');
     }
 }
