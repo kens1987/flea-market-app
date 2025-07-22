@@ -9,17 +9,25 @@
     </div>
 
     <div class="tabs">
-        <a href="#" class="tab active">出品した商品</a>
-        <a href="#">購入した商品</a>
+        <a href="{{ route('mypage',['page'=>'sell']) }}" class="tab active">出品した商品</a>
+        <a href="{{ route('mypage',['page'=>'buy']) }}">購入した商品</a>
     </div>
 
     <div class="product-grid">
-        @foreach ($products as $product)
+        @forelse ($products as $product)
         <div class="product-card">
             <img src="{{ asset('storage/images/' . $product->image) }}" alt="商品画像">
             <p>{{ $product->product_name }}</p>
         </div>
-        @endforeach
+        @empty
+            <p>
+                @if($page === 'buy')
+                    購入した商品がありません。
+                @else
+                    出品した商品がありません。
+                @endif
+            </p>
+        @endforelse
     </div>
 </div>
 @endsection

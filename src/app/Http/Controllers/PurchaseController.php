@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Payment;
 
 class PurchaseController extends Controller
 {
@@ -18,8 +19,20 @@ class PurchaseController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'payment_method' => 'required|in:convenience,card',
+            'product_id' => 'required|exists:products,id',
+        ]);
+        $user = auth()->user();
         $product = Product::findOrFail($request->input('product_id'));
-        $user = Auth::user();
-        return redirect()->route('product.list')->with('success','購入が完了しました！');
+        $payment =Payment::create([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'amount' => $product->price,
+            'payment_method' => $request->input('payment_method'),
+            'paid_at' => now(),
+        ]);
+        return redirect()->route('product.list',['tab' => 'mylist'])
+        ->with('success','購入が完了しました！')->with('payment_method', $request->input('payment_method'));
     }
 }

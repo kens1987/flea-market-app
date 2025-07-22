@@ -25,7 +25,7 @@
             @csrf
             <button class="logout-button" type="submit">ログアウト</button>
         </form>
-        <a href="{{ route('profile.edit') }}">マイページ</a>
+        <a href="{{ route('mypage') }}">マイページ</a>
         <!-- <a href="{{ route('product.create') }}">出品</a> -->
     </div>
     @endauth

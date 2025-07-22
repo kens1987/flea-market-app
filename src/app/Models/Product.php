@@ -32,4 +32,7 @@ class Product extends Model
     public function shippingAddress(){
         return $this->hasOne(shippingAddress::class);
     }
+    public function purchasers(){
+        return $this->belongsToMany(User::class,'payments')->withTimestamps();
+    }
 }

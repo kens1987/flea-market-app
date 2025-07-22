@@ -10,12 +10,17 @@
         </div>
 
         <div class="select-payment">
-            <label>支払い方法</label>
-            <select name="payment_method">
-                <option>選択してください</option>
-                <option value="convenience_store">コンビニ払い</option>
-                <option value="credit_card">クレジットカード</option>
-            </select>
+            <form action="{{ route('purchase.store') }}" method="post">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <label>支払い方法</label>
+                    <select name="payment_method">
+                        <option value="">選択してください</option>
+                        <option value="convenience">コンビニ払い</option>
+                        <option value="card">クレジットカード</option>
+                    </select>
+                    <button type="submit">購入する</button>
+            </form>
         </div>
 
         <div class="shipping-address">
@@ -31,13 +36,21 @@
     <div class="right">
         <div class="summary-box">
             <p>商品代金：<span>¥{{ number_format($product->price) }}</span></p>
-            <p>支払い方法：<span>コンビニ払い</span></p>
+            @if(session('payment_method'))
+            <p>支払い方法：<span>
+                @if(session('payment_method') === 'convenience')
+                    コンビニ払い
+                @elseif(session('payment_method') === 'card')
+                    カード払い
+                @endif
+            </span></p>
+            @endif
         </div>
-        <form action="{{ route('purchase.store') }}" method="POST">
+        <!-- <form action="{{ route('purchase.store') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <button type="submit" class="btn-primary">購入する</button>
-        </form>
+        </form> -->
     </div>
 </div>
 @endsection

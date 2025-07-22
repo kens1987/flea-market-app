@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Product;
+use App\Models\Payment;
 
 class ProfileController extends Controller
 {
@@ -43,5 +45,26 @@ class ProfileController extends Controller
             ]
         );
         return redirect()->route('product.list',['tab' => 'mylist'])->with('success','プロフィールを更新しました');
+    }
+
+    public function show(Request $request)
+    {
+        $user = auth()->user();
+        $products = $user->products;
+        $purchased = $user->purchaseProducts;
+        $page = $request->query('page','sell');
+        $purchasedProducts = Product::whereIn('id',Payment::where('user_id',$user->id)->pluck('product_id'))->get();
+        if($page === 'buy'){
+            $products = Product::whereIn('id',Payment::where('user_id',$user->id)->pluck('product_id'))->get();
+        }else{
+            $products = $user->products;
+        }
+        return view('profile.show',compact('user','products','purchased','page','purchasedProducts'));
+    }
+
+    public function edit()
+    {
+        $user = auth()->user();
+        return view('profile.edit',compact('user'));
     }
 }

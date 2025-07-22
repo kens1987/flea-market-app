@@ -45,8 +45,8 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class);
     }
-    public function product(){
-        return $this->hasMany(Products::class);
+    public function products(){
+        return $this->hasMany(Product::class);
     }
     public function likes(){
         return $this->hasMany(Like::class);
@@ -56,5 +56,8 @@ class User extends Authenticatable
     }
     public function shippingAddress(){
         return $this->hasOne(ShippingAddress::class);
+    }
+    public function purchasedProducts(){
+        return $this->belongsToMany(Product::class,'payments','user_id','product_id');
     }
 }

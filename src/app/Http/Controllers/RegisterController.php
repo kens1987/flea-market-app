@@ -21,6 +21,11 @@ class RegisterController extends Controller
         'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
-        return redirect()->route('profile.edit');
+        return redirect()->route('register.step2');
+    }
+    public function step2(){
+        $user = auth()->user();
+        return view('auth.register_step2',compact('user'));
     }
 }
+
