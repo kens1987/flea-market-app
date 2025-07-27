@@ -25,7 +25,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::get('/sell', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/sell', [ProductController::class, 'create'])->name('product.listing');
+    Route::post('/product', [ProductController::class, 'store'])->name('product.store');
     Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
 
     Route::post('/product/{id}/like', [LikeController::class, 'toggleLike'])->middleware('auth')->name('product.like');

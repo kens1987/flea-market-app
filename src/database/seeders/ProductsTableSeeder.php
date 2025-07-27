@@ -16,7 +16,7 @@ class ProductsTableSeeder extends Seeder
     {
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => '腕時計',
             'price' => 15000,
             'brand_name' => 'Rolax',
@@ -27,7 +27,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'HDD',
             'price' => 5000,
             'brand_name' => '西芝',
@@ -38,7 +38,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => '玉ねぎ３束',
             'price' => 300,
             'brand_name' => '',
@@ -49,7 +49,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => '革靴',
             'price' => 4000,
             'brand_name' => '',
@@ -60,7 +60,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'ノートPC',
             'price' => 45000,
             'brand_name' => '',
@@ -71,7 +71,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'マイク',
             'price' => 8000,
             'brand_name' => '',
@@ -82,7 +82,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'ショルダーバッグ',
             'price' => 3500,
             'brand_name' => '',
@@ -93,7 +93,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'タンブラー',
             'price' => 500,
             'brand_name' => '',
@@ -104,7 +104,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'コーヒーミル',
             'price' => 4000,
             'brand_name' => 'Starbacks',
@@ -115,7 +115,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'user_id' => 1,
-            'category_id' => rand(1,14),
+            // 'category_id' => rand(1,14),
             'product_name' => 'メイクセット',
             'price' => 2500,
             'brand_name' => '',

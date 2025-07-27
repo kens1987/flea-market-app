@@ -105,3 +105,33 @@ input[type="text"], select {
     justify-content: space-between;
     margin-bottom: 0.5rem;
 }
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    cursor: pointer;
+    border: 1px solid #f66;
+    border-radius: 20px;
+    padding: 6px 16px;
+    background-color: #fff;
+    color: #f66;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tag input[type="checkbox"] {
+    display: none;
+}
+
+.tag input[type="checkbox"]:checked + span {
+    background-color: #f66;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 16px;
+}

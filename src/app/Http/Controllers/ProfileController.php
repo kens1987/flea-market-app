@@ -21,14 +21,9 @@ class ProfileController extends Controller
 
     public function update(ProfileRequest $request) {
         $user = auth()->user();
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'postcode' => 'nullable|string|max:10',
-            'address' => 'nullable|string|max:255',
-            'building' => 'nullable|string|max:255',
-        ]);
+        $validated = $request->validated();
         if($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('image','public');
+            $imagePath = $request->file('image')->store('profile_images','public');
             $validated['image'] = $imagePath;
         }
         if($user->profile) {
