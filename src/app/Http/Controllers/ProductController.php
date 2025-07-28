@@ -17,8 +17,8 @@ class ProductController extends Controller
         return view('product.listing',compact('products','categories'));
     }
 
-    public function show(Request $request,$item_id) {
-        $product = Product::with(['category','comments.user'])->findOrFail($item_id);
+    public function show(Request $request,$id) {
+        $product = Product::with(['category','comments.user'])->findOrFail($id);
         $tab = $request->query('tab');
         $userId = Auth::id();
         if($tab === 'mylist'){

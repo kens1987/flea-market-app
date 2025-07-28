@@ -16,8 +16,9 @@
         <img src="{{ asset('storage/images/logo.svg') }}" alt="COACHTECHロゴ" class="logo">
     </div>
     @auth
-    <form class="search-form">
-        <input type="text" placeholder="なにをお探しですか？" class="search-input">
+    <form class="search-form" action="{{ route('product.list') }}" method="get">
+        <input type="hidden" name="tab" value="{{ request('tab') }}">
+        <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}" class="search-input">
     </form>
 
     <div class="header-buttons">

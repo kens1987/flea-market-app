@@ -4,8 +4,8 @@
 <div class="mylist-container">
 
     <div class="tabs">
-        <a href="{{ route('product.list',['tab'=>'recommend']) }}" class="tab">おすすめ</a>
-        <a href="{{ route('product.list',['tab'=>'mylist']) }}" class="tab active">マイリスト</a>
+        <a href="{{ route('product.list',['tab'=>'recommend','keyword'=>request('keyword')]) }}" class="tab {{ $tab === 'recommend' ? 'active' : '' }}">おすすめ</a>
+        <a href="{{ route('product.list',['tab'=>'mylist','keyword'=>request('keyword')]) }}" class="tab {{ $tab === 'mylist' ? 'active' : '' }} ">マイリスト</a>
     </div>
 
     <div class="product-list">

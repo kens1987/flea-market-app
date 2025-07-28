@@ -46,11 +46,11 @@
             </span></p>
             @endif
         </div>
-        <!-- <form action="{{ route('purchase.store') }}" method="POST">
+        <form action="{{ route('purchase.store') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <button type="submit" class="btn-primary">購入する</button>
-        </form> -->
+        </form>
     </div>
 </div>
 @endsection

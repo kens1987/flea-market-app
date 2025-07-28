@@ -12,6 +12,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ShippingAddressController;
 
+Route::get('/', [ItemController::class, 'index'])->name('product.list');
+Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
+
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 Route::get('/register/step2', [RegisterController::class, 'step2'])->name('register.step2');
@@ -27,23 +30,22 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/sell', [ProductController::class, 'create'])->name('product.listing');
     Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
 
-    Route::post('/product/{id}/like', [LikeController::class, 'toggleLike'])->middleware('auth')->name('product.like');
+    Route::post('/product/{id}/like', [LikeController::class, 'toggleLike'])->name('product.like');
 
-    Route::post('/product/{id}/comment', [CommentController::class, 'store'])->middleware('auth')->name('product.comment');
+    Route::post('/product/{id}/comment', [CommentController::class, 'store'])->name('product.comment');
 
-    Route::post('/Purchase', [PurchaseController::class, 'store'])->middleware('auth')->name('purchase.store');
-    Route::get('/Purchase/{item_id}/', [PurchaseController::class, 'show'])->middleware('auth')->name('purchase.show');
+    Route::post('/Purchase', [PurchaseController::class, 'store'])->name('purchase.store');
+    Route::get('/Purchase/{item_id}/', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::get('/purchase/complete',function(){return view('product.complete');})->name('purchase.complete');
 
-    Route::get('/', [ItemController::class, 'index'])->name('product.list');
-
-    Route::get('/purchase/address/{item_id}', [ShippingAddressController::class, 'edit'])->middleware('auth')->name('shipping.address.edit');
+    Route::get('/purchase/address/{item_id}', [ShippingAddressController::class, 'edit'])->name('shipping.address.edit');
     Route::put('/purchase/address/{item_id}', [ShippingAddressController::class, 'update'])->name('shipping.address.update');
 
     // Route::get('/profile/edit', [ProfileController::class, 'index'])->name('profile.edit');
     // Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     // Route::get('/mypage/profile', [ProfileController::class, 'show'])->name('profile.update');
     // Route::get('/?tab=mylist', [ItemController::class, 'index'])->name('product.list');
+    // Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
+    // Route::get('/', [ItemController::class, 'index'])->name('product.list');
 });

@@ -11,6 +11,7 @@
         <p class="brand-name">{{ $product->brand_name}}</p>
         <p class="price">¥{{ number_format($product->price) }}<span>（税込）</span></p>
         <div class="actions">
+            @auth
             <form action="{{ route('product.like',$product->id) }}" method="post">
                 @csrf
                 <button type="submit">
@@ -23,11 +24,20 @@
                     </span>
                 </button>
             </form>
-                <span>💬{{ $product->comments->count() }}</span>
+            @else
+                <a href="{{ route('login') }}">
+                    <span>☆{{ $product->likes->count() }}</span>
+                </a>
+            @endauth
+                <span>💬{{ $product->comments->count() }}（ログインでいいね可能）</span>
         </div>
+        @auth
         <form action="{{ route('purchase.show',$product->id) }}" method="get">
             <button type="submit" class="btn-primary">購入手続きへ</button>
         </form>
+        @else
+            <a href="{{ route('login') }}" >ログインして購入手続きへ</a>
+        @endauth
 
         <h3>商品説明</h3>
         <p>カラー：{{ $product->color ?? '未設定' }}</p>
@@ -38,14 +48,14 @@
 
         <h3>商品の情報</h3>
         <p>カテゴリー：
-            <span class="tag">{{ $product->category->name ?? '未設定' }}</span>
+            <span class="tag">{{ optional($product->category)->name ?? '未設定' }}</span>
         </p>
         <p>商品の状態：{{ $product->condition }}</p>
 
         <h3>({{ $product->comments->count() }})</h3>
         @forelse($product->comments as $comment)
             <div class="comment">
-                <p><strong>{{ $comment->user_name ?? '匿名ユーザー' }}</strong></p>
+                <p><strong>{{ optional($comment->user)->name ?? '匿名ユーザー' }}</strong></p>
                 <div class="comment-box">{{ $comment->comment }}</div>
             </div>
         @empty
@@ -53,6 +63,7 @@
         @endforelse
 
         <h3>商品へのコメント</h3>
+        @auth
         <form action="{{ route('product.comment',$product->id) }}" method="post">
             @csrf
             <textarea name="comment" placeholder="こちらにコメントを入力"></textarea>
@@ -61,6 +72,9 @@
             @enderror
             <button type="submit" class="btn-primary">コメントを送信する</button>
         </form>
+        @else
+        <p>コメント投稿には <a href="{{ route('login') }}">ログイン</a> が必要です。</p>
+        @endauth
     </div>
 </div>
-@endsection 
+@endsection
