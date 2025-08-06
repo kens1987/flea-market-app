@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -23,7 +25,22 @@ Route::post('/register/step2', [RegisterController::class, 'storeStep2'])->name(
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 
-Route::middleware(['auth'])->group(function() {
+Route::get('/email/verify-message', function () {
+    return view('auth.verify-message');
+})->name('verification.message');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+    // return redirect('/product');
+    // return app(VerifyEmailResponse::class)->toResponse($request);
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::middleware(['auth','verified'])->group(function() {
+    Route::get('/product',fn() => view('product.list'))->name('product');
+
     Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage');
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,10 +59,4 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/purchase/address/{item_id}', [ShippingAddressController::class, 'edit'])->name('shipping.address.edit');
     Route::put('/purchase/address/{item_id}', [ShippingAddressController::class, 'update'])->name('shipping.address.update');
 
-    // Route::get('/profile/edit', [ProfileController::class, 'index'])->name('profile.edit');
-    // Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::get('/mypage/profile', [ProfileController::class, 'show'])->name('profile.update');
-    // Route::get('/?tab=mylist', [ItemController::class, 'index'])->name('product.list');
-    // Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product.show');
-    // Route::get('/', [ItemController::class, 'index'])->name('product.list');
 });

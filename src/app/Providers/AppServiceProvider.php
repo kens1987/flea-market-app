@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton(RegisterResponse::class, function () {
+        return new class implements RegisterResponse {
+            public function toResponse($request)
+            {
+                return redirect()->route('verification.message');
+            }
+        };
+    });
     }
 }

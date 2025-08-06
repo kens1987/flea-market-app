@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class ProductsTableSeeder extends Seeder
@@ -99,6 +100,7 @@ class ProductsTableSeeder extends Seeder
         foreach ($products as $data){
             $product = Product::create([
                 'user_id' => 1,
+                // 'category_id' => rand(1,14),
                 'product_name' => $data['product_name'],
                 'price' => $data['price'],
                 'brand_name' => $data['brand_name'],
@@ -107,7 +109,8 @@ class ProductsTableSeeder extends Seeder
                 'condition' => $data['condition'],
                 'status' => 'listed',
             ]);
-            $product->categories()->attach(rand(1,14));
+            $categoryIds = Category::inRandomOrder()->take(rand(1,3))->pluck('id')->toArray();
+            $product->categories()->attach($categoryIds);
         }
     }
 }

@@ -19,7 +19,7 @@
 ![スクリーンショット (579)](https://github.com/user-attachments/assets/08c9cdd2-af6a-49a8-b575-142d975530eb)
 
 ##  URL  
-  フリマアプリ（新規登録画面）：  http://localhost/register  
-  
+  フリマアプリ（新規登録画面）：  http://localhost/register  (password123)  
+  フリマアプリ（商品一覧）：  http://localhost/  
   php MyAdmin： http://localhost:8080/  
   

@@ -15,7 +15,9 @@
             @endphp
                 <a href="{{ route('product.show',['item_id' => $product->id]) }}">
                     <div class="product-item">
-                        <img src="{{ asset('storage/images/' . $product->image) }}" alt="商品画像">
+                        <!-- <img src="{{ asset('storage/images/' . $product->image) }}" alt="商品画像"> -->
+                        <!-- <img src="{{ asset('storage/' . $product->image) }}" alt="商品画像"> -->
+                        <img src="{{ asset(Str::startsWith($product->image, 'images/') ? 'storage/' . $product->image : 'storage/images/' . $product->image) }}" alt="商品画像">
                         @if($isSold)
                             <div class="sold-badge">SOLD</div>
                         @endif

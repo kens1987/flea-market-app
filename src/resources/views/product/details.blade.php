@@ -3,7 +3,9 @@
 @section('content')
 <div class="product-detail-container">
     <div class="product-image">
-        <img src="{{ asset('storage/images/' . $product->image) }}" alt="商品画像">
+        <!-- <img src="{{ asset('storage/images/' . $product->image) }}" alt="商品画像"> -->
+        <!-- <img src="{{ asset('storage/' . $product->image) }}" alt="商品画像"> -->
+         <img src="{{ asset(Str::startsWith($product->image, 'images/') ? 'storage/' . $product->image : 'storage/images/' . $product->image) }}" alt="商品画像">
     </div>
 
     <div class="product-info">
@@ -41,14 +43,15 @@
 
         <h3>商品説明</h3>
         <p>カラー：{{ $product->color ?? '未設定' }}</p>
-        <!-- <p>カラー：グレー</p> -->
         <p>{{ $product->product_description ?? '（説明なし）' }}</p>
-        <!-- <p>新品<br>商品の状態は良好です。傷もありません。</p>
-        <p>購入後、即発送いたします。</p> -->
 
         <h3>商品の情報</h3>
         <p>カテゴリー：
-            <span class="tag">{{ optional($product->category)->name ?? '未設定' }}</span>
+            @forelse($product->categories as $category)
+            <span class="tag">{{ $category->name }}</span>
+            @empty
+            <span class="tag">未設定</span>
+            @endforelse
         </p>
         <p>商品の状態：{{ $product->condition }}</p>
 
