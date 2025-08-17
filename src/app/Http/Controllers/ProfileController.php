@@ -22,6 +22,7 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request) {
         $user = auth()->user();
         $validated = $request->validated();
+        \Log::info('Profile update validated data',$validated);
         if($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('profile_images','public');
             $validated['image'] = $imagePath;
@@ -34,9 +35,9 @@ class ProfileController extends Controller
         $user->shippingAddress()->updateOrCreate(
             ['user_id'=>$user->id],
             [
-                'postcode'=>$validated['postcode']??'',
-                'address'=>$validated['address']??'',
-                'building'=>$validated['building']??'',
+                'postcode'=>$request->input('postcode')?:null,
+                'address'=>$request->input('address')?:null,
+                'building'=>$request->input('building')?:null,
             ]
         );
         return redirect()->route('product.list',['tab' => 'mylist'])->with('success','プロフィールを更新しました');
@@ -59,7 +60,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $user = auth()->user();
+        $user = auth()->user()->load('profile');
         return view('profile.edit',compact('user'));
     }
 }

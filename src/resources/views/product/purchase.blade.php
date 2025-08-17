@@ -10,7 +10,7 @@
             <div class="product-summary">
                 <!-- <img src="{{ asset('storage/images/' . $product->image) }}" alt="商品画像"> -->
                 <!-- <img src="{{ asset('storage/' . $product->image) }}" alt="商品画像"> -->
-                 <img src="{{ asset(Str::startsWith($product->image, 'images/') ? 'storage/' . $product->image : 'storage/images/' . $product->image) }}" alt="商品画像">
+                <img src="{{ asset(Str::startsWith($product->image, 'images/') ? 'storage/' . $product->image : 'storage/images/' . $product->image) }}" alt="商品画像">
                 <p class="product-name">{{ $product->product_name }}</p>
                 <p class="product-price">¥{{ number_format($product->price) }}</p>
             </div>

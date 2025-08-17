@@ -24,10 +24,10 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'mimes:jpeg,png',
+            'image' => 'nullable|mimes:jpeg,png',
             'name' => 'required|string|max:20',
-            'postcode' => 'required|string|max:8',
-            'address' => 'required|string',
+            'postcode' => 'nullable|string|max:8',
+            'address' => 'nullable|string',
         ];
     }
     public function messages()
