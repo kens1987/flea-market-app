@@ -19,25 +19,31 @@ class ProductListTest extends TestCase
     /** @test */
     public function 全商品を取得できる()
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
         Product::factory()->count(3)->create();
-        $response = $this->get('/products');
+        $response = $this->get('/product');
         $response->assertStatus(200);
-        $response->assertSee(Product::first()->name);
+        $response->assertSee(Product::first()->product_name);
     }
     /** @test */
     public function 購入済み商品は_Sold_と表示される()
     {
-        $product = Product::factory()->create(['is_sold'=>true]);
-        $response = $this->get('/products');
-        $response->assertSee('sold');
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $product = Product::factory()->create(['status'=>'sold']);
+        $response = $this->get('/product');
+        $response->assertStatus(200);
+        $response->assertSee('SOLD');
     }
     /** @test */
     public function 自分が出品した商品は表示されない()
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        Product::factory()->create(['user_id'=>$user->id]);
-        $response = $this->get('/products');
-        $response->assertDontSee($user->products()->first()->name);
+        $myProduct = Product::factory()->create(['user_id'=>$user->id]);
+        $response = $this->get('/product');
+        $response->assertStatus(200);
+        $response->assertDontSee($myProduct->product_name);
     }
 }

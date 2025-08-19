@@ -13,6 +13,14 @@
   php artisan key:generate  
   php artisan migrate  
   php artisan db:seed
+  mailtrap  
+    MAIL_MAILER=smtp
+    MAIL_HOST=sandbox.smtp.mailtrap.io
+    MAIL_USERNAME=c34360324ad134
+    MAIL_PASSWORD=9970de7d1cfc37
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=example@example.com
+    MAIL_FROM_NAME="FleaMarketApp"
 ###  使用技術  
   
 ###  ER図  
